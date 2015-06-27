@@ -61,11 +61,19 @@ var QueryString = (function() {
     delete queryObject.updateQueryObject;
    
     if (Object.observe) {
+        //If the browser supports Object.observe, use that method
         Object.observe(queryObject, function() {
             if (queryObject.autoUpdate) {
                 queryObject.update();
             }
         });
+    } else {
+        //If not set a timer to auto-update
+        setInterval(function() {
+            if (queryObject.autoUpdate) {
+                queryObject.update();
+            }
+        }, 400);
     }
     
     return queryObject;
