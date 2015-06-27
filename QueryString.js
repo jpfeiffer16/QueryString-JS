@@ -1,4 +1,4 @@
-var QueryString = function() {
+var QueryString = (function() {
     var queryObject = function() {
         //Private Methods
         var updateQueryObject = function (queryObject) {
@@ -59,12 +59,14 @@ var QueryString = function() {
     //Init the queryObject with the current querystring:
     queryObject.updateQueryObject(queryObject);
     delete queryObject.updateQueryObject;
-    
-    Object.observe(queryObject, function() {
-        if (queryObject.autoUpdate) {
-            queryObject.update();
-        }
-    }); 
+   
+    if (Object.observe) {
+        Object.observe(queryObject, function() {
+            if (queryObject.autoUpdate) {
+                queryObject.update();
+            }
+        });
+    }
     
     return queryObject;
-}();
+}());
