@@ -12,12 +12,16 @@ In addition, the QueryString object provide a few more useful features:
 ```javascript
 QueryString.update();
 ```
+-Updates the Query String to reflect the current state of the QueryString Object
 ```javascript
 QueryString.getQueryString();
 ```
+-Get's the text representation of the QueryString Object
 ```javascript
 QueryString.getFullUrl();
 ```
+-Gets the full Url with the QueryString Object's current state as the Query String
 ```javascript
 QueryString.go();
 ```
+-Refreshes the page with the current state of the Query String Object
