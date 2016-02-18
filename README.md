@@ -25,3 +25,13 @@ QueryString.getFullUrl();
 QueryString.go();
 ```
 -Refreshes the page with the current state of the Query String Object
+
+For example, in an old-school search page or such it is often desirable to simply post the form back to the server with an updated querystring that will match different results. This is often hard to do if there are other important values that we do not want to mess with in the querystring already. QueryStringJS makes this easy:
+
+Suppose you have the url: ```https://somesite.net/search?text=test&type=image```
+
+And some typical jQuery with a little help from QueryStringJS:
+```
+  
+```
+
