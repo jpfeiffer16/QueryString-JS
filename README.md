@@ -31,7 +31,17 @@ For example, in an old-school search page or such it is often desirable to simpl
 Suppose you have the url: ```https://somesite.net/search?text=test&type=image```
 
 And some typical jQuery with a little help from QueryStringJS:
+```javascript
+  $('#search-text').click(function(e) {
+    var searchText = $('#search-text').val();
+    //searchText is "cars"
+    QueryString[text] = searchText;
+  });
 ```
-  
+Your url now looks like this: ```https://somesite.net/search?text=cars&type=image```
+
+Now you can post back to the server with:
+```javascript
+QueryString.go();
 ```
 
