@@ -1,0 +1,23 @@
+{
+  "name": "QueryString-JS",
+  "description": "Easy querystring managment",
+  "main": "QueryString.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "QueryString"
+  ],
+  "authors": [
+    "Joe Pfeiffer"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jpfeiffer16/QueryString-JS",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
