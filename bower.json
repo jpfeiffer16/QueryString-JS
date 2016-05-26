@@ -6,7 +6,8 @@
     "globals"
   ],
   "keywords": [
-    "QueryString", "Easy"
+    "QueryString",
+    "Easy"
   ],
   "authors": [
     "Joe Pfeiffer"
@@ -20,5 +21,6 @@
     "test",
     "tests",
     "Examples"
-  ]
+  ],
+  "version": "1.0.0"
 }
