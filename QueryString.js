@@ -1,7 +1,9 @@
-var QueryString = (function() {
-  var queryObject = function() {
+(function () {
+  function QueryString() {
+    var self = this;
+    var queryObject = {};
     //Private Methods
-    var updateQueryObject = function (queryObject) {
+    var updateQueryObject = function () {
       var queryString = window.location.search.substring(1);
 
       var params = {}, queries, temp, i, l;
@@ -15,7 +17,6 @@ var QueryString = (function() {
         }
       }
     };
-
     var assembleQueryString = function (queryObject) {
       var qString = '?';
       for (var key in queryObject) {
@@ -25,56 +26,46 @@ var QueryString = (function() {
       };
       return qString.slice(0, qString.length - 1);
     };
-
+    
+    //Public Properties
+    this.autoUpdate = true;
+    
     //Public Methods
-    var autoUpdate = true;
-
-    var getQueryString = function () {
+    this.get = function (name) {
+      if (typeof name == 'string')
+        return queryObject[name];
+      else
+        console.error('Get method requires a string forthe  name argument');
+    };
+    
+    this.set = function (name, value) {
+      if (typeof name == 'string' && typeof value == 'string')
+        queryObject[name] = value;
+        if (self.autoUpdate) self.update();
+      else
+        console.error('Set method requires a string for both name and value arguments');
+    };
+    
+    this.getQueryString = function () {
       return assembleQueryString(queryObject);
     };
 
-    var getFullUrl = function () {
-      var newUrl = location.protocol + '//' + location.host + location.pathname + assembleQueryString(queryObject);
+    this.getFullUrl = function () {
+      var newUrl = location.protocol + '//' + location.host +
+        location.pathname + assembleQueryString(queryObject);
       return newUrl;
     };
 
-    var update = function() {
-      history.replaceState('', '', getFullUrl());
+    this.update = function() {
+      history.replaceState('', '', self.getFullUrl());
     };
 
-    var go = function () {
+    this.go = function () {
       location.href = getFullUrl();
     };
-
-    return {
-      updateQueryObject: updateQueryObject,
-        autoUpdate,
-        getQueryString: getQueryString,
-        getFullUrl: getFullUrl,
-        update: update,
-        go: go
-    };
-  }();
-
-  //Init the queryObject with the current querystring:
-  queryObject.updateQueryObject(queryObject);
-  delete queryObject.updateQueryObject;
-
-  if (Object.observe) {
-    //If the browser supports Object.observe, use that method
-    Object.observe(queryObject, function() {
-      if (queryObject.autoUpdate) {
-        queryObject.update();
-      }
-    });
-  } else {
-    //If not set a timer to auto-update
-    setInterval(function() {
-      if (queryObject.autoUpdate) {
-        queryObject.update();
-      }
-    }, 400);
+    
+    //Initial Setup
+    updateQueryObject();
   }
-
-  return queryObject;
-}());
+  window.QueryString = new QueryString();
+})();
