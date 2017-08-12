@@ -1,6 +1,6 @@
 {
   "name": "querystring-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easy querystring managment",
   "main": "QueryString.js",
   "scripts": {
