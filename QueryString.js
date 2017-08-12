@@ -1,10 +1,15 @@
 (function () {
-  function QueryString() {
+  function QueryString(query) {
     var self = this;
     var queryObject = {};
     //Private Methods
     var updateQueryObject = function () {
-      var queryString = window.location.search.substring(1);
+      var queryString = '';
+      if (query) {
+        queryString = query;
+      } else {
+        queryString = window.location.search.substring(1);
+      }
 
       var params = {}, queries, temp, i, l;
 
@@ -67,5 +72,9 @@
     //Initial Setup
     updateQueryObject();
   }
-  window.QueryString = new QueryString();
+  if (module) {
+    module.exports = QueryString;
+  } else {
+    window.QueryString = new QueryString();
+  }
 })();
