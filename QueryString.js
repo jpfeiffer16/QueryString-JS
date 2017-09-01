@@ -25,7 +25,11 @@
     var assembleQueryString = function (queryObject) {
       var qString = '?';
       for (var key in queryObject) {
-        if ((typeof (queryObject[key]) != 'function') && (typeof (queryObject[key]) != 'boolean')) {
+        if (
+          (typeof (queryObject[key]) != 'function') &&
+          (typeof (queryObject[key]) != 'boolean') &&
+          queryObject[key]
+        ) {
           qString += key + '=' + queryObject[key] + '&';
         }
       };
@@ -72,9 +76,5 @@
     //Initial Setup
     updateQueryObject();
   }
-  if (module) {
-    module.exports = QueryString;
-  } else {
-    window.QueryString = new QueryString();
-  }
+  window.QueryString = new QueryString();
 })();
